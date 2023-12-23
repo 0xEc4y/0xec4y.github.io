@@ -2,6 +2,7 @@ import nimib, nimislides # nimib/nimislides uses Markdown by default
 import std/strformat, std/strutils, std/random, system
 # import niml [html DSL]
 
+# seed random functions
 randomize()
 
 # TITLE: Are Viruses still a thing?
@@ -29,24 +30,32 @@ let
 # string to get random gradient every time file is recompiled
 # Rand Gradients = &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})"
 
+
 # image backgrounds
 let
-    firstImage = "backgrounds/virus.gif"
+    firstImage = "backgrounds/dosvirus.gif"
+    garyware = "backgrounds/garyware.PNG"
+    garyware2 = "backgrounds/garyware2.PNG"
+
 
 
 # First Level Indentation - Creates new slide entirely
-slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
+slide(slideOptions(colorBackground="#000000")): #gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
     # Second Level Indentation - anything here and beyond will be a sub-slide.
     slide(slideOptions(imageBackground=firstImage)): # CREATE VIRUS VIDEO AND TURN INTO GIF LATER.  
         align("left"):
-            nbText: "#### <span style=\"color:black\"> I'm sure you've heard of a computer virus and imagine something like this. 👆</span>"
+            nbText: "#### <span style=\"color:white\"> I'm sure you've heard of a computer virus and probably imagine something like this. 👆</span>"
             columns:
                 column:
-                    nbText: "<span style=\"color:black\"> You're probably wondering if this still exists? Has Apple just made a Virus proof computer?</span>"
+                    nbText: "<span style=\"color:white\"> You're probably wondering if this still exists.. Has Apple just made Virus proof computers? 😲 😲</span>"
                 column:
-                    nbText: "<span style=\"color:black\">I will try to answer all of your questions in these slides.</span>"
-    slide:
+                    nbText: "<span style=\"color:white\">I will try to answer your questions in these fun slides. Enjoy!</span>"
+                    nbText: &"<span style=\"color:red\">CLICK THE NAVIGATION ARROWS (THE BOTTOM RIGHT) OR MOVE THE SCROLLWHEEL TO CONTINUE.</span>"
+    slideAutoAnimate:                
         nbText: "Some slides will need to explain more, so keep clicking down until you can't. There is a number by the navigator that shows your slide number."
+    slideAutoAnimate:
+        nbText: "Some slides will need to explain more, so keep clicking down until you can't. There is a number by the navigator that shows your slide number."
+        nbText: &"<br><br>Backgrounds that are not a image/gif are<br>[[<span style=\"color:{stdHighlight}\">randomly generated</span>]] gradiets! Enjoy the slideshow."
 
 slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
     slideAutoAnimate:
@@ -63,6 +72,7 @@ slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixe
     slide:
         nbText:fmt("But if the average person like you or I had <span style=\"color:{malwareHighlight}\"> malware</span>, they'd be after our <span style=\"color:{stdHighlight}\"> money</span>. Nobody is looking to make a **political statement** with the stuff we're trying to hide.")
 
+
 slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
     slideAutoAnimate:
         nbText: fmt("#### How do I get <span style=\"color:{malwareHighlight}\">malware</span>? How do I know if I already have it?")
@@ -76,6 +86,7 @@ slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixe
 
     slide:
         nbText: fmt("some examples or some shit")
+
 
 slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
     slide:
@@ -94,13 +105,32 @@ slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixe
         nbText: fmt("Clicking on something is not the only way to be infected, but for the average person it covers 95% of malware we will experience.")
         fragment:
             nbText: fmt("## <span style=\"color:{stdHighlight}\">Protect yourself</span><span style=\"color:red\">!</span>")
-            nbText: fmt("Go down for examples ⬇️ (use code blocks)")
+            nbText: fmt("⬇️ Go down for examples ⬇️")
+    slide(slideOptions(imageBackground=garyware)):
+        nbText: &"<span style=\"color:red\">As I said before, usually the process of infecting you with malware is started by clicking something you shouldn't..</span><br><br>"
+        nbText: &"<span style=\"color:red\">In this \"Free Valorant Cheats\" video, the user urges you to click the link which will have you download a file.</span>"
+        #nbCodeInBlock: discard
+    slide(slideOptions(imageBackground=garyware2)):
+        nbText: &"<span style=\"color:red\">As you can see, the link is:</span>"
+        nbText: &"<span style=\"color:red\">(((((<span style=\"color:{stdHighlight}\">**Do Not visit this link**</span>)))))</span>"
+        nbCodeInBlock: 
+            discard   "https://upload[.]advgroup[.]ru/LnCxTJL9"
+        nbClearOutput()
+    slide(slideOptions(imageBackground=garyware2)):
+        nbText: &"<span style=\"color:#2EB798\">Some <span style=\"color:{stdHighlight}\">immediate</span> signs to me that it's a malware infection campaign is: </span>"
+        columns:
+            column:
+                nbText: "<span style=\"color:black\">Too good<br> to be true:<br>works hard on a program that is very saught after then gives it out for free? hmm...</span>"
+            column:
+                nbText: "<span style=\"color:orange\">Troubleshooting tips include disabling Anti-Virus. This should immediately mean it's trying to evade this software.</span>"
+            column:
+                nbText: "<span style=\"color:red\">The File is zipped with a password. This is done to evade YouTube's anti malicious-link functionality.</span>"
 
 slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
     slide:
         nbText: fmt("#### How to remove <span style=\"color:{malwareHighlight}\">malware</span>.")
         fragment:
-            columns:
+            columns: 
                 column:
                     nbText: fmt("<br>There are a few ways to remove <span style=\"color:{malwareHighlight}\">malware</span>, including (<span style=\"color:{stdHighlight}\">but not limited to</span>).")
                 column:
