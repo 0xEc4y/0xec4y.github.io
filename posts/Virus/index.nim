@@ -175,12 +175,12 @@ slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixe
 
 slide(slideOptions(gradientBackground="radial-gradient(#A81AC0, white)")):
     slideAutoAnimate:
-        nbText: &("Conclusion/Thanks")
+        nbText: &("Thank you for reading!")
     slideAutoAnimate:
-        nbText: &("Conclusion/Thanks")
+        nbText: &("Thank you for reading!")
         nbText: &("#### powered by [nimlang](https://nim-lang.org/)")
     slideAutoAnimate:
-        nbText: &("Conclusion/Thanks")
+        nbText: &("Thank you for reading!")
         nbText: &("#### powered by [nimlang](https://nim-lang.org/)")
         nbText: &("source code: [</>](https://github.com/0xEc4y/0xec4y.github.io/blob/main/posts/Virus/index.nim)")
 nbSave()
