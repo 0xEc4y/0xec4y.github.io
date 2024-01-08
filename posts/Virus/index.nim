@@ -52,8 +52,8 @@ slide(slideOptions(colorBackground="#000000")): #gradientBackground= &"{prefixes
                     nbText: "<span style=\"color:white\">I will try to answer your questions in these fun slides. Enjoy!</span>"
                     nbText: &"<span style=\"color:red\">CLICK THE NAVIGATION ARROWS (THE BOTTOM RIGHT) OR MOVE THE SCROLLWHEEL TO CONTINUE.</span>"
     slideAutoAnimate:                
-        nbText: "Some slides will need to explain more, so keep clicking down until you can't. There is a number by the navigator that shows your slide number."
-        nbText: &"<br><br>Backgrounds that are not a image/gif/i-frame are<br>[[<span style=\"color:{stdHighlight}\">randomly generated</span>]] gradiets! Enjoy the slideshow."
+        nbText: "Some slides will need to explain more, so keep clicking down until you can't. There is a number by the navigator that shows your slide number.<br><span style=\"color:red\">\\*Mobile Tip\\* You can swipe up and down to navigate.</span>"
+        nbText: &"<br>Backgrounds that are not a image/gif/i-frame are<br>[[<span style=\"color:{stdHighlight}\">randomly generated</span>]] gradiets! Enjoy the slideshow."
 
 slide(slideOptions(gradientBackground= &"{prefixes[find(prefixes, sample(prefixes))]}-gradient({primaryColors[find(primaryColors, sample(primaryColors))]}, {secondaryColors[find(secondaryColors, sample(secondaryColors))]})")):
     slideAutoAnimate:
@@ -182,5 +182,5 @@ slide(slideOptions(gradientBackground="radial-gradient(#A81AC0, white)")):
     slideAutoAnimate:
         nbText: &("Conclusion/Thanks")
         nbText: &("#### powered by [nimlang](https://nim-lang.org/)")
-        nbText: &("**Leave credits here**")
+        nbText: &("source code: [</>](https://github.com/0xEc4y/0xec4y.github.io/blob/main/posts/Virus/index.nim)")
 nbSave()
