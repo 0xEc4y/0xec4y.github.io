@@ -17,7 +17,7 @@
                 <li><a href=../posts/>posts</a></li>
                 <li><a href=../projects/>projects</li>
                 <li><a href=https://twitter.com/0xEc4y rel=me>@me</a></li>
-                <li><a href=https://github.com/0xEc4y rel=me>&lt;/>me</a></li>
+                <li><a href=https://github.com/0xEc4y rel=me><img src="../assets/gh.png" width="20px" height="20px"></a></li>
             </ul>
         </nav>
     </header>
@@ -50,7 +50,6 @@
             
             let width, height;
 
-            // Initialize canvas size
             function resize() {
                 width = canvas.width = 100;
                 height = canvas.height = 100;
@@ -58,16 +57,15 @@
             window.addEventListener('resize', resize);
             resize();
 
-            // Configuration
-            const sphereStep = 10 * Math.PI / 180; // Convert degrees to radians
+             
+            const sphereStep = 10 * Math.PI / 180; 
             const ringCount = 400;
             const sphereRadius = 15;
             const ringRadius = 43;
-            const ringTiltAngle = 6 * Math.PI / 180; // 5 degrees in radians
+            const ringTiltAngle = 6 * Math.PI / 180; 
             const bgColor = 'black';
-            const pointSize = .7; // Size of each point
+            const pointSize = .7; 
 
-            // State variables
             let spherePoints = [];
             let ringPoints = [];
             let t = 0;
@@ -75,11 +73,9 @@
             let ringRotation = 0;
             let ringTiltDirection = 1;
 
-            // Precompute sine and cosine for ring tilt
             const sinTilt = Math.sin(ringTiltAngle * ringTiltDirection);
             const cosTilt = Math.cos(ringTiltAngle * ringTiltDirection);
 
-            // Utility functions
             function random(min, max) {
                 return Math.random() * (max - min) + min;
             }
@@ -93,10 +89,9 @@
                 return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
             }
 
-            // Initialize sphere points
             function initSpherePoints() {
-                for (let theta = 0; theta < Math.PI; theta += sphereStep) { // Theta from 0 to PI
-                    for (let phi = 0; phi < 2 * Math.PI; phi += sphereStep) { // Phi from 0 to 2PI
+                for (let theta = 0; theta < Math.PI; theta += sphereStep) { 
+                    for (let phi = 0; phi < 2 * Math.PI; phi += sphereStep) { 
                         const sinTheta = Math.sin(theta);
                         const x = sphereRadius * sinTheta * Math.cos(phi);
                         const y = sphereRadius * sinTheta * Math.sin(phi);
@@ -108,7 +103,6 @@
                 }
             }
 
-            // Initialize ring points
             function initRingPoints() {
                 for (let i = 0; i < ringCount; i++) {
                     const angle = (i / ringCount) * 2 * Math.PI;
@@ -120,7 +114,6 @@
                 }
             }
 
-            // Draw a single point
             function drawPoint(x, y, alpha) {
                 ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
                 ctx.beginPath();
@@ -128,26 +121,25 @@
                 ctx.fill();
             }
 
-            // Render the scene
             function render() {
-                // Clear background
+                // clear background
                 ctx.fillStyle = bgColor;
                 ctx.fillRect(0, 0, width, height);
 
-                // Translate to center
+                // translate to center
                 ctx.save();
                 ctx.translate(width / 2, height / 2);
 
-                // Dynamic alpha for points
+                // dynamic alpha for points
                 const dynamicAlpha = 150 + 50 * Math.sin(t / 50);
                 const alpha = Math.min(Math.max(dynamicAlpha, 0), 255);
 
-                // Render Sphere Points
+                // render sphere Points
                 const sphereRotCos = Math.cos(sphereRotation);
                 const sphereRotSin = Math.sin(sphereRotation);
                 for (let i = 0; i < spherePoints.length; i++) {
                     const p = spherePoints[i];
-                    // Calculate oscillation
+                    // calculate oscillation
                     const angle = p.angleOffset + t * 0.01 * p.speed;
                     const oscillation = 5 * Math.sin(angle);
                     const norm = normalize(p.x, p.y, p.z);
@@ -155,11 +147,11 @@
                     let y = p.y + norm.y * oscillation;
                     let z = p.z + norm.z * oscillation;
 
-                    // Rotate around Y-axis (sphereRotation)
+                    // rotate around Y-axis (sphereRotation)
                     const rotatedX = x * sphereRotCos - z * sphereRotSin;
                     const rotatedZ = x * sphereRotSin + z * sphereRotCos;
 
-                    // Simple perspective scaling
+                    // simple perspective scaling
                     const scaleFactor = mapValue(rotatedZ, -sphereRadius - 20, sphereRadius + 20, 0.5, 1.5);
                     const finalX = rotatedX * scaleFactor;
                     const finalY = y * scaleFactor;
@@ -167,31 +159,27 @@
                     drawPoint(finalX, finalY, alpha);
                 }
 
-                // Render Ring Points
                 const ringRotCos = Math.cos(ringRotation);
                 const ringRotSin = Math.sin(ringRotation);
                 for (let i = 0; i < ringPoints.length; i++) {
                     const p = ringPoints[i];
-                    // Apply ring rotation
+
                     let rotatedX = p.x * ringRotCos + p.z * ringRotSin;
                     let rotatedZ = p.x * ringRotSin - p.z * ringRotCos;
 
-                    // Apply tilt
+                    // tilt
                     let y = rotatedZ * sinTilt;
                     rotatedZ *= cosTilt;
 
-                    // Calculate oscillation
+                    // oscillation
                     const angle = p.angleOffset + t * 0.01 * p.speed;
                     const oscillation = 2 * Math.sin(angle);
 
-                    // Oscillation perpendicular to the ring plane
                     const oscX = -y * oscillation;
                     const oscY = oscillation;
                     rotatedX += oscX;
                     y -= oscY;
-                    // rotatedZ remains unchanged
 
-                    // Simple perspective scaling
                     const scaleFactor = mapValue(rotatedZ, -ringRadius - 20, ringRadius + 20, 0.5, 1.5);
                     const finalX = rotatedX * scaleFactor;
                     const finalY = y * scaleFactor;
@@ -201,16 +189,13 @@
 
                 ctx.restore();
 
-                // Update state
                 t += 1;
-                sphereRotation += 0.3 * Math.PI / 180; // Convert degrees to radians
+                sphereRotation += 0.3 * Math.PI / 180; // convert degrees to radians
                 ringRotation += .4 * Math.PI / 180;
 
-                // Continue the animation
                 requestAnimationFrame(render);
             }
 
-            // Initialize everything and start rendering
             function init() {
                 initSpherePoints();
                 initRingPoints();
@@ -219,7 +204,7 @@
 
             init();
 
-            // Change cursor to pointer on hover
+            // change cursor to pointer on hover
             canvas.style.cursor = 'pointer';
         })();
     </script>

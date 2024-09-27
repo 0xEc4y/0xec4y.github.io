@@ -4,32 +4,75 @@
 <head>
     <meta charset=utf-8>
     <meta name="color-scheme" content="light only">
-    <title>projects</title> 
-    <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href=../favicon.ico>
-
+    <title>cli tut</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="shortcut icon" href=../../favicon.ico>
 </head>
 
 <body>
     <header>
         <nav><a href="/"> <canvas id="logoCanvas" width="70" height="70"></canvas></a>
             <ul>
-                <li><a href=../about/>about</a></li>
-                <li><a href=../posts/>posts</a></li>
-                <li><a href=/projects/>projects</li>
+                <li><a href=../../about/>about</a></li>
+                <li><a href=../>posts</a></li>
+                <li><a href=../../projects/>projects</li>
                 <li><a href=https://twitter.com/0xEc4y rel=me>@me</a></li>
-                <li><a href=https://github.com/0xEc4y rel=me><img src="../assets/gh.png" width="20px" height="20px"></a></li>
+                <li><a href=https://github.com/0xEc4y rel=me><img src="../../assets/gh.png" width="20px" height="20px"></a></li>
             </ul>
         </nav>
     </header>
 
     <div id=content>
-        <p>Side projects that I have no time for.</p>
-        <h2 id=posts>projects</h2>
-        <ul>
-            <li style="color: white;">Return soon for updates.</a>
-            </li>
-        </ul>
+        <h2 style="color: orangered;">you need a degree in Computer-Science to install apps on Linux</h1>>
+        <img src="../../assets/smuglinux.png">
+        <p>-------------------------------------------------------------------------------------------------------</p>
+        <br><br>
+        <p>i'm tired of this rhetoric that Linux is impossible to use, and i'm also tired of nerds gatekeeping knowledge from people that are trying to learn.</p>
+        <p>being a Linux daily driver for many years now, i'd like to give you a No-BS tutorial on how to easily install programs and update your system from the <a href="https://www.freecodecamp.org/news/command-line-for-beginners/">command line interface</a>.</p>
+        <p>i'd like to also give a warning: if you're not a nerd then this likely won't matter to you. <span style="color: red">i encourage everyone to read and see how simple it can really be</span>, but i can't say you'll use it if you dont care at all about how computers work.</p>
+        <p>this tutorial assumes you're on a debian-like <a href="https://distrowatch.com/dwres.php?resource=popularity">distribution</a> (meaning you're using the  <a href="https://www.cyberciti.biz/faq/ubuntu-lts-debian-linux-apt-command-examples/">apt package manager</a>)</p>
+        <img src="../../assets/apt1.png">
+        <p>if you open a terminal, you'll be greeted with something like this.<br>the format is&nbsp; <span style="color: red">User@NameOfComputer</span>. the name of my User is <span style="color: red">user</span> and the Name Of the Computer i'm using is <span style="color: red">debian</span>.  <br>this is the Command Line, where you'll type commands if you want to communicate with your computer.</p>
+        <p style="font-size: 35px; font-family: Lucida Console, monospace;">apt -h</p>
+        <p>"apt" is your package manager, "-h" is a paramater to the command called that passes the "h" flag (which is standard for bringing up a help menu). all of this jargon means typing any command and "-h" after will usually bring up some help.</p>
+        <p>Alright, that's 60% of using Linux right there. Figuring out how to get help, then reading through what's documented to help yourself. If this doesn't sound interesting, this may not be for you, and that's ok!</p>
+        <p>moving on..</p>
+        <p>to update your system, you'll want to run <span style="color: red">apt update</span> to fetch what packages to download, and <span style="color: red"> apt upgrade </span> to install the packages.</p>
+        <img src="../../assets/apt2.png">
+        <p>oh no, first problem! due to permissions (<a href="https://linuxize.com/post/understanding-linux-file-permissions/">a whole seperate introduction lol</a>), your user has been denied access to run <span style="color: red">apt upgrade</span>! you have to be <a href="https://askubuntu.com/a/735678">root, or super user</a> to run this command.</p>
+        <img src="../../assets/apt3.png">
+        <p>once you prepend <span style="color: red">sudo</span> to your command, you'll get an output like this. this means it searched for updates to programs you have installed on your system, 165 programs on mine can be updated right now.</p>
+        <p><br>usually i don't care how many have to be installed and just do the download + install in one command. this makes it very simple to update my entire computer, just by entering one command.</p>
+        <img src="../../assets/apt4.png">
+        <p style="font-size: 35px; font-family: Lucida Console, monospace;">sudo apt update -y && sudo apt upgrade -y</p>
+        <p>the "<span style="color: red">&&</span>" allows you to chain multiple commands together. in that one line, i ran <span style="color: red">apt update</span> followed by <span style="color: red">apt upgrade</span> as super user, using "<span style="color: red">-y</span>" to skip the need for me to confirm i want the changes.</p>
+        <p><br>the first thing i usually install is a web browser, so i'll show you how to install <a href="https://brave.com/linux/#release-channel-installation">brave</a>.</p>
+        <p>when trying to install something, i usually search for the software followed by "install"</p>
+        <img src="../../assets/bravesearch.png">
+        <p>if the software isn't niche, it will be at the top of search results and will have a url that isn't phishing. i see brave.com, i enter.</p>
+        <img src="../../assets/braveinstructions.png">
+        <p>first link sends me here, this page has install instructions for many families of Linux Distributions. Good thing we're using the most popular and supported, <br>Debian/Ubuntu/Mint.</p>
+        <p>from here its straightforward, the developers of the software we want (thanks, Brave Team) gave us a command chain to enter that will do all of the installing for us. all WE have to do is enter them into our CLI.</p>
+        <img src="../../assets/apt5.png"><br>
+        <img src="../../assets/apt6.png">
+        <p>some will give feedback, some will not. do not panic. just enter the commands as you're told and you will usually be correct.</p>
+        <img src="../../assets/apt7.png"><br>
+        <img src="../../assets/apt8.png"><br>
+        <p>and just like that, after entering the commands we were given in the same order, brave is ready to be installed.</p>
+        <img src="../../assets/apt9.png"><br>
+        <p>Boom.<br>You've installed your first Linux "app" using the command-line only. Congrats.</p>
+        <p>your new software should now be in your shell <a href="https://askubuntu.com/a/551993">$PATH</a>. what i usually do now, is start typing out how the software is spelled, and letting [TAB] autocomplete finish the command for me.</p>
+        <img src="../../assets/apt10.png">
+
+        <p><br><br>i am not <em>smart</em> or <em>cool</em> for knowing this stuff, i'm just a Real Nerd. i've spend thousands of hours behind a computer. we (humanity) have a problem where we don't want to share information, because we think it'll encroach on our Coolness or Opportunity of some sort.</p>
+        <p>i think this is ridiculous.</p>
+
+
+        <br><br>
+
+        <p>the more i grow up, the more i realize that in every domain <em>ever</em> there were gatekeepers that wanted to be the cool guys.</p>
+    
+
     </div>
     <footer>
         <p>&copy;2023&ndash;2024&nbsp; &#183;&nbsp;
@@ -204,6 +247,6 @@
             canvas.style.cursor = 'pointer';
         })();
     </script>
-</body>
 
-</html> 
+</body> 
+</html>
